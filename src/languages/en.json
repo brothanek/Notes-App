@@ -1,0 +1,14 @@
+{
+    "app.notes": "Notes",
+    "app.createNote": "Create Note",
+    "app.notesList": "Notes List",
+    "app.headline": "Note Name",
+    "app.content": "Content",
+    "app.date": "Date",
+    "app.display": "display",
+    "app.edit": "edit",
+    "app.delete": "delete",
+    "app.noteEditting": "Note Editting",
+    "app.updateNote": "Update Note",
+    "app.createNewNote": "Create new note"
+}

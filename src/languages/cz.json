@@ -1,0 +1,14 @@
+{
+    "app.notes": "Poznámky",
+    "app.createNote": "Vytvořit Poznámku",
+    "app.notesList": "Seznam Poznámek",
+    "app.headline": "Jméno Poznámky",
+    "app.content": "Obsah",
+    "app.date": "Datum",
+    "app.display": "zobrazit",
+    "app.edit": "editovat",
+    "app.delete": "smazat",
+    "app.noteEditting": "Úprava Poznámky",
+    "app.updateNote": "Aktualizovat",
+    "app.createNewNote": "Vytvořit novou poznámku"
+}
