@@ -7,7 +7,7 @@ Frontend:
 Backend: 
 
 1. Open folder Notes-app-master/backend and run: npm i
-2. After the installation is completed enter command: npm run dev
+2. After the installation is completed enter command: npm start
 3. The database is now running on localhost:5000
 
 
