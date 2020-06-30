@@ -13,25 +13,41 @@ export default class CreateNote extends Component {
         this.onChangeHeadline = this.onChangeHeadline.bind(this)
         this.onChangeContent = this.onChangeContent.bind(this)
         this.onChangeDate = this.onChangeDate.bind(this)
+        this.onChangeButton = this.onChangeButton.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+
 
         this.state = {
             headline: '',
             content: '',
-            date: new Date()
+            date: new Date(),
+            button: 'disabled'
         }
     }
 
-    onChangeHeadline(e) {
+    async onChangeHeadline(e) {
 
-        this.setState({
+        await this.setState({
             headline: e.target.value
         })
+        this.onChangeButton()
     }
-    onChangeContent(e) {
-        this.setState({
+    async onChangeContent(e) {
+        await this.setState({
             content: e.target.value
         })
+        this.onChangeButton()
+    }
+    onChangeButton(e) {
+        if (this.state.content !== '' && this.state.headline !== '') {
+            this.setState({
+                button: ''
+            })
+        } else {
+            this.setState({
+                button: 'disabled'
+            })
+        }
     }
     onChangeDate(date) {
         this.setState({
@@ -41,36 +57,27 @@ export default class CreateNote extends Component {
 
     onSubmit(e) {
         e.preventDefault()
-
-        let noHeadline = this.state.headline === '' ? true : false
-        let noContent = this.state.content === '' ? true : false
-
-        if (!noHeadline && !noContent) {
-            const note = {
-                headline: this.state.headline,
-                content: this.state.content,
-                date: this.state.date
-            }
-            axios.post('http://localhost:5000/notes/add', note)
-                .then(res => console.log(res.data))
-
-            window.location = '/'
-        } else {
-            if (noContent && noHeadline) alert('Please enter a note name and content')
-            if (noContent && !noHeadline) alert('Please enter some note content')
-            if (!noContent && noHeadline) alert('Please enter a note name')
+        const note = {
+            headline: this.state.headline,
+            content: this.state.content,
+            date: this.state.date
         }
+        axios.post('http://localhost:5000/notes/add', note)
+            .then(res => console.log(res.data))
+
+        window.location = '/'
+
 
     }
 
     render() {
         return (
             <div>
-                <h3><FormattedMessage id='app.createNewNote' defaultMessage='Create new note'/></h3>
+                <h3><FormattedMessage id='app.createNewNote' defaultMessage='Create new note' /></h3>
                 <form onSubmit={this.onSubmit}>
                     <br />
                     <div className="form-group">
-                        <label><FormattedMessage id='app.headline' defaultMessage='Note Name'/>:</label>
+                        <label><FormattedMessage id='app.headline' defaultMessage='Note Name' />:</label>
                         <input
                             id='headline'
                             className="form-control"
@@ -81,7 +88,7 @@ export default class CreateNote extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label><FormattedMessage id='app.content' defaultMessage='Content'/>: </label>
+                        <label><FormattedMessage id='app.content' defaultMessage='Content' />: </label>
                         <textarea
                             id='content'
                             rows="5"
@@ -96,7 +103,7 @@ export default class CreateNote extends Component {
                     <br />
 
                     <div className="form-group">
-                        <label><FormattedMessage id='app.date' defaultMessage='Date'/>: </label>
+                        <label><FormattedMessage id='app.date' defaultMessage='Date' />: </label>
                         <DatePicker
                             selected={this.state.date}
                             onChange={this.onChangeDate}
@@ -106,7 +113,7 @@ export default class CreateNote extends Component {
                     <br />
 
                     <div className="form-group">
-                        <button id='createBtn' type="Submit" className="btn btn-primary"> <FormattedMessage id='app.createNote' defaultMessage='Create Note'/></button>
+                        <button id='createBtn' type="Submit" className="btn btn-primary" disabled={this.state.button}> <FormattedMessage id='app.createNote' defaultMessage='Create Note' /></button>
 
                     </div>
                 </form>
