@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl"
 import { Context } from './wrapper'
 
 
-function Navbar() {
+export default function Navbar() {
     const context = useContext(Context)
 
 
@@ -28,4 +28,3 @@ function Navbar() {
         </nav>
     )
 }
-export default Navbar

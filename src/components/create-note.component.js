@@ -103,8 +103,9 @@ export default class CreateNote extends Component {
                     <br />
 
                     <div className="form-group">
-                        <label><FormattedMessage id='app.date' defaultMessage='Date' />: </label>
+                        <label><FormattedMessage id='app.date' defaultMessage='Date' />:</label>
                         <DatePicker
+                            className='form-control'
                             selected={this.state.date}
                             onChange={this.onChangeDate}
                         />
